@@ -35,14 +35,5 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/cardata")
-def cars():
-    """Return a list of sample names."""
-
-    # Use Pandas to perform the sql query
-
-    # Return a list of the column names (sample names)
-
-
 if __name__ == "__main__":
     app.run()
