@@ -1,22 +1,16 @@
-// var map = L.map("map", {
-//   center: [39.5, -98.35],
-//   zoom: 5
-// });
-
 var map = L.map("map", {
-  style: 'mapbox://styles/mapbox/dark-v10', //hosted style id
+  style: 'mapbox://styles/mapbox/dark-v10',
   center: [39.5, -98.35], // starting position
   zoom: 5 // starting zoom
   });
 
 // Adding tile layer
 L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-  attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+  // attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
   maxZoom: 18,
-  id: "mapbox.streets",
+  id: "mapbox.dark",
   accessToken: API_KEY
 }).addTo(map);
-
 
 var link = "https://raw.githubusercontent.com/tpj728/Project_2/master/state_boundaries.json";
 
