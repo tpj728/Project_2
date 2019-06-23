@@ -1,7 +1,13 @@
+// var map = L.map("map", {
+//   center: [39.5, -98.35],
+//   zoom: 5
+// });
+
 var map = L.map("map", {
-  center: [39.5, -98.35],
-  zoom: 5
-});
+  style: 'mapbox://styles/mapbox/dark-v10', //hosted style id
+  center: [39.5, -98.35], // starting position
+  zoom: 5 // starting zoom
+  });
 
 // Adding tile layer
 L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
@@ -21,7 +27,7 @@ d3.json(link, function(data) {
     // Style each feature (in this case a neighborhood)
     style: function(feature) {
       return {
-        color: "white",
+        color: "grey",
         // Call the chooseColor function to decide which color to color our neighborhood (color based on borough)
         fillColor: "lightblue",
         fillOpacity: 0.2,
@@ -43,19 +49,17 @@ d3.json(link, function(data) {
         mouseout: function(event) {
           layer = event.target;
           layer.setStyle({
-            fillOpacity: 0.2
+            fillOpacity: 0.1
           });
-        }
+        },
         // When a feature (neighborhood) is clicked, it is enlarged to fit the screen
-        // click: function(event) {
-        //   map.fitBounds(event.target.getBounds());
-        // }
+        click: function(event) {
+          map.fitBounds(event.target.getBounds());
+        }
       });
       // Giving each feature a pop-up with information pertinent to it
-      // layer.bindPopup("<h1>" + feature.properties.neighborhood + "</h1> <hr> <h2>" + feature.properties.borough + "</h2>");
+      layer.bindPopup("<h1>" + feature.properties.NAME + "</h1> <hr>");
 
     }
   }).addTo(map);
-
-
 });

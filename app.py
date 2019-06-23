@@ -18,13 +18,13 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL', '') or "sqlite:///db/cars.sqlite"
-db = SQLAlchemy(app)
+# app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL', '') or "sqlite:///db/cars.sqlite"
+# db = SQLAlchemy(app)
 
-# reflect an existing database into a new model
-Base = automap_base()
-# reflect the tables
-Base.prepare(db.engine, reflect=True)
+# # reflect an existing database into a new model
+# Base = automap_base()
+# # reflect the tables
+# Base.prepare(db.engine, reflect=True)
 
 # Save references to each table
 
@@ -33,6 +33,11 @@ Base.prepare(db.engine, reflect=True)
 def index():
     """Return the homepage."""
     return render_template("index.html")
+
+@app.route("/map")
+def map():
+    """Return the homepage."""
+    return render_template("map.html")    
 
 
 if __name__ == "__main__":
