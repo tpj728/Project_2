@@ -52,7 +52,7 @@ d3.json(link, function(data) {
         }
       });
       // Giving each feature a pop-up with information pertinent to it
-      layer.bindPopup("<h1>" + feature.properties.vehicle.State + "</h1> <hr>");
+      layer.bindPopup("<h1>" + feature.properties.CAR + "</h1> <hr>");
 
     }
   }).addTo(map);
