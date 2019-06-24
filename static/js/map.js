@@ -8,7 +8,7 @@ var map = L.map("map", {
 L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
   // attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
   maxZoom: 18,
-  id: "mapbox.light",
+  id: "mapbox.dark",
   accessToken: API_KEY
 }).addTo(map);
 
@@ -19,7 +19,7 @@ d3.json(link, function(data) {
   // Creating a geoJSON layer with the retrieved data
   L.geoJson(data, {
     // Style each feature (in this case a neighborhood)
-    style: function(feature) {
+    style: function() {
       return {
         color: "grey",
         // Call the chooseColor function to decide which color to color our neighborhood (color based on borough)
@@ -27,7 +27,16 @@ d3.json(link, function(data) {
         fillOpacity: 0.2,
         weight: 1.5
       };
-    },
+    }
+  }).addTo(map);
+});
+
+var infoLink = "https://raw.githubusercontent.com/tpj728/Project_2/master/car_info.json";
+
+// Grabbing our GeoJSON data..
+d3.json(infoLink, function(data) {
+  // Creating a geoJSON layer with the retrieved data
+  L.geoJson(data, {
     // Called on each feature
     onEachFeature: function(feature, layer) {
       // Set mouse events to change map styling
@@ -52,8 +61,9 @@ d3.json(link, function(data) {
         }
       });
       // Giving each feature a pop-up with information pertinent to it
-      layer.bindPopup("<h1>" + feature.properties.NAME + "</h1> <hr>");
+      layer.bindPopup("<h1>" + feature.vehicle.State + "</h1> <hr>");
 
     }
+
   }).addTo(map);
 });
