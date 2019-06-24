@@ -14,6 +14,17 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
 var link = "https://raw.githubusercontent.com/tpj728/Project_2/master/car_info.json";
 
+function chooseColor(body) {
+  switch (body) {
+  case "Truck":
+    return "lightcoral";
+  case "SUV/Crossover":
+    return "yellow";
+  default:
+    return "lightgreen";
+  }
+}
+
 // Grabbing our GeoJSON data..
 d3.json(link, function(data) {
   // Creating a geoJSON layer with the retrieved data
@@ -23,8 +34,9 @@ d3.json(link, function(data) {
       return {
         color: "grey",
         // Call the chooseColor function to decide which color to color our neighborhood (color based on borough)
-        fillColor: "lightblue",
-        fillOpacity: 0.2,
+        // fillColor: "lightblue",
+        fillColor: chooseColor(feature.properties.BODY),
+        fillOpacity: 0.3,
         weight: 1.5
       };
     },
@@ -43,7 +55,7 @@ d3.json(link, function(data) {
         mouseout: function(event) {
           layer = event.target;
           layer.setStyle({
-            fillOpacity: 0.1
+            fillOpacity: 0.3
           });
         },
         // When a feature (neighborhood) is clicked, it is enlarged to fit the screen
@@ -52,7 +64,9 @@ d3.json(link, function(data) {
         }
       });
       // Giving each feature a pop-up with information pertinent to it
-      layer.bindPopup("<h1>" + feature.properties.CAR + "</h1> <hr>");
+      layer.bindPopup(`<h1> ${feature.properties.NAME} </h1><hr> <img src = "${feature.properties.IMGURL}" style="max-width:100%; max-width:100%;"> <br> <b>Make:</b> ${feature.properties.MAKE} <br> <b>Model:</b> ${feature.properties.MODEL}
+      <br> <b>Manufacturer Suggested Retail Price:</b> ${feature.properties.PRICENEW} <br> <b>Used Car Value:</b> ${feature.properties.PRICEUSED}
+      <br> <b>Class:</b> ${feature.properties.CLAsS} <br> <b>MPG:</b> ${feature.properties.MPG} <br> <b>Body:</b> ${feature.properties.BODY}`);
 
     }
   }).addTo(map);
