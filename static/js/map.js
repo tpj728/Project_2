@@ -12,7 +12,7 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
   accessToken: API_KEY
 }).addTo(map);
 
-var link = "https://raw.githubusercontent.com/tpj728/Project_2/master/car_info.json";
+var link = "https://raw.githubusercontent.com/tpj728/Project_2/master/state_car_info.json";
 
 function chooseColor(body) {
   switch (body) {
@@ -29,11 +29,11 @@ function chooseColor(body) {
 d3.json(link, function(data) {
   // Creating a geoJSON layer with the retrieved data
   L.geoJson(data, {
-    // Style each feature (in this case a neighborhood)
+    // Style each feature (state)
     style: function(feature) {
       return {
         color: "grey",
-        // Call the chooseColor function to decide which color to color our neighborhood (color based on borough)
+        // Call the chooseColor function to decide state color (color based on vehicle body style)
         // fillColor: "lightblue",
         fillColor: chooseColor(feature.properties.BODY),
         fillOpacity: 0.3,
@@ -44,29 +44,31 @@ d3.json(link, function(data) {
     onEachFeature: function(feature, layer) {
       // Set mouse events to change map styling
       layer.on({
-        // When a user's mouse touches a map feature, the mouseover event calls this function, that feature's opacity changes to 90% so that it stands out
+        // When a user's mouse touches a map feature, the mouseover event calls this function, that feature's opacity changes to 60% so that it stands out
         mouseover: function(event) {
           layer = event.target;
           layer.setStyle({
             fillOpacity: 0.6
           });
         },
-        // When the cursor no longer hovers over a map feature - when the mouseout event occurs - the feature's opacity reverts back to 50%
+        // When the cursor no longer hovers over a map feature - when the mouseout event occurs - the feature's opacity reverts back to 30%
         mouseout: function(event) {
           layer = event.target;
           layer.setStyle({
             fillOpacity: 0.3
           });
         },
-        // When a feature (neighborhood) is clicked, it is enlarged to fit the screen
+        // When a feature (state) is clicked, it is enlarged to fit the screen
         click: function(event) {
           map.fitBounds(event.target.getBounds());
         }
       });
       // Giving each feature a pop-up with information pertinent to it
-      layer.bindPopup(`<h1> ${feature.properties.NAME} </h1><hr> <img src = "${feature.properties.IMGURL}" style="max-width:100%; max-width:100%;"> <br> <b>Make:</b> ${feature.properties.MAKE} <br> <b>Model:</b> ${feature.properties.MODEL}
-      <br> <b>Manufacturer Suggested Retail Price:</b> ${feature.properties.PRICENEW} <br> <b>Used Car Value:</b> ${feature.properties.PRICEUSED}
-      <br> <b>Class:</b> ${feature.properties.CLAsS} <br> <b>MPG:</b> ${feature.properties.MPG} <br> <b>Body:</b> ${feature.properties.BODY}`);
+      layer.bindPopup(`<h1> ${feature.properties.NAME} </h1><hr> 
+      	<img src = "${feature.properties.IMGURL}" style="max-width:100%; max-width:100%;"> 
+      	<br> <b>Make:</b> ${feature.properties.MAKE} <br> <b>Model:</b> ${feature.properties.MODEL}
+      	<br> <b>MSRP:</b> ${feature.properties.PRICENEW} <br> <b>Class:</b> ${feature.properties.CLASS} 
+      	<br> <b>MPG:</b> ${feature.properties.MPG} <br> <b>Body:</b> ${feature.properties.BODY}`);
 
     }
   }).addTo(map);
