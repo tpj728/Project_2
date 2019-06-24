@@ -67,7 +67,7 @@ d3.json(link, function(data) {
       layer.bindPopup(`<h1> ${feature.properties.NAME} </h1><hr> 
       	<img src = "${feature.properties.IMGURL}" style="max-width:100%; max-width:100%;"> 
       	<br> <b>Make:</b> ${feature.properties.MAKE} <br> <b>Model:</b> ${feature.properties.MODEL}
-      	<br> <b>MSRP:</b> ${feature.properties.PRICENEW} <br> <b>Class:</b> ${feature.properties.CLASS} 
+      	<br> <b>MSRP:</b> ${feature.properties.MSRP} <br> <b>Class:</b> ${feature.properties.CLASS} 
       	<br> <b>MPG:</b> ${feature.properties.MPG} <br> <b>Body:</b> ${feature.properties.BODY}`);
 
     }
