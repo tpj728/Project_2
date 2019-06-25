@@ -14,13 +14,32 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 
-# #################################################
-# # Database Setup
-# #################################################
+#################################################
+# Database Setup
+#################################################
 
-# app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL', '') or "sqlite:///db/cars.sqlite"
-# db = SQLAlchemy(app)
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL', '') or "sqlite:///db/cars.sqlite"
+db = SQLAlchemy(app)
 
+class Cars(db.Model):
+    __tablename__ = 'car_stats'
+    id = db.Column(db.Integer, primary_key = True)
+    State = db.Column(db.String(30))
+    Model = db.Column(db.String(30))  
+    Make = db.Column(db.String(30))
+    Manufacturer_Suggested_Retail_Price = db.Column(db.String(30))
+    Used_Car_Value = db.Column(db.String(30))
+    Value_Rating = db.Column(db.Integer)
+    Engine_Name = db.Column(db.String(100))
+    Transmission_Name = db.Column(db.String(50))
+    Trim = db.Column(db.String(30))
+    Class = db.Column(db.String(50))
+    Horsepower = db.Column((db.String(100)))
+    Standard_MPG = db.Column(db.String(50))
+    Body_Style = db.Column(db.String(30))
+    Drivetrain = db.Column(db.String(50))
+    Fuel_Type = db.Column(db.String(50))
+    Seating_Capacity = db.Column(db.String(30))
 
 @app.route("/")
 def index():
@@ -32,17 +51,16 @@ def map():
     """Return the map page."""
     return render_template("map.html")    
 
-# @app.route("/data")
-# def names():
-#     """Return table data."""
+@app.route("/data")
+def data():
 
-#     # Use Pandas to perform the sql query
-#     results = db.session.query(car_stats.State, car_stats.Make, car_stats.Manufacturer_Suggested_Retail_Price, car_stats.Used_Car_Value, car_stats.Value_Rating, \
-#         car_stats.Engine_Name, car_stats.Transmission_Name, car_stats.Trim, car_stats.Class, car_stats.Horsepower, car_stats.Standard_MPG, car_stats.Body_Style, \
-#             car_stats.Drivetrain, car_stats.Fuel_Type, car_stats.Seating_Capacity).all()
+    # Use Pandas to perform the sql query
+    results = db.session.query(Cars.State, Cars.Model, Cars.Make, Cars.Manufacturer_Suggested_Retail_Price, Cars.Used_Car_Value, Cars.Value_Rating, \
+        Cars.Engine_Name, Cars.Transmission_Name, Cars.Trim, Cars.Class, Cars.Horsepower, Cars.Standard_MPG, Cars.Body_Style, \
+            Cars.Drivetrain, Cars.Fuel_Type, Cars.Seating_Capacity).all()
 
-#     print(results)
-#     print(type(results))
+    """Return table data."""
+    return render_template('data.html', items=results)
 
 if __name__ == "__main__":
     app.run()
