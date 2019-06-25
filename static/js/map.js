@@ -64,11 +64,13 @@ d3.json(link, function(data) {
         }
       });
       // Giving each feature a pop-up with information pertinent to it
-      layer.bindPopup(`<h1> ${feature.properties.NAME} </h1><hr> 
-      	<img src = "${feature.properties.IMGURL}" style="max-width:100%; max-width:100%;"> 
+      layer.bindPopup(`<div id="marker-panel"><h1> ${feature.properties.NAME} </h1><hr><br>
+      	<a href="https://www.motortrend.com/cars/${feature.properties.MAKE}/${feature.properties.MODEL}/2016/" target="_blank">
+      	<img src = "${feature.properties.IMGURL}" id="car-image"></a>
+      	<div id = "marker-panel-text">
       	<br> <b>Make:</b> ${feature.properties.MAKE} <br> <b>Model:</b> ${feature.properties.MODEL}
       	<br> <b>MSRP:</b> ${feature.properties.MSRP} <br> <b>Class:</b> ${feature.properties.CLASS} 
-      	<br> <b>MPG:</b> ${feature.properties.MPG} <br> <b>Body:</b> ${feature.properties.BODY}`);
+      	<br> <b>MPG:</b> ${feature.properties.MPG} <br> <b>Body:</b> ${feature.properties.BODY}<div></div>`);
 
     }
   }).addTo(map);

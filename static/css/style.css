@@ -8,3 +8,16 @@ body,
 html {
   height: 100%;
 }
+
+#car-image{
+	max-width:100%; 
+	max-width:100%;
+}
+
+#marker-panel {
+  width: 300px
+}
+
+#marker-panel {
+  font-size: 14px
+}
