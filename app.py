@@ -29,7 +29,6 @@ class Cars(db.Model):
     Make = db.Column(db.String(30))
     Manufacturer_Suggested_Retail_Price = db.Column(db.String(30))
     Used_Car_Value = db.Column(db.String(30))
-    Value_Rating = db.Column(db.Integer)
     Engine_Name = db.Column(db.String(100))
     Transmission_Name = db.Column(db.String(50))
     Trim = db.Column(db.String(30))
@@ -55,7 +54,7 @@ def map():
 def data():
 
     # Use Pandas to perform the sql query
-    results = db.session.query(Cars.State, Cars.Model, Cars.Make, Cars.Manufacturer_Suggested_Retail_Price, Cars.Used_Car_Value, Cars.Value_Rating, \
+    results = db.session.query(Cars.State, Cars.Model, Cars.Make, Cars.Manufacturer_Suggested_Retail_Price, Cars.Used_Car_Value, \
         Cars.Engine_Name, Cars.Transmission_Name, Cars.Trim, Cars.Class, Cars.Horsepower, Cars.Standard_MPG, Cars.Body_Style, \
             Cars.Drivetrain, Cars.Fuel_Type, Cars.Seating_Capacity).all()
 
