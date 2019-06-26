@@ -2,7 +2,7 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(drawBarColors);
 
 function drawBarColors() {
-      var data = google.visualization.arrayToDataTable(plot_data);
+      var data = google.visualization.arrayToDataTable(plotData);
 
       var options = {
         title: 'Car Value Depreciation (2016 vs 2019)',
@@ -17,10 +17,69 @@ function drawBarColors() {
         },
         height: 700
       };
-      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      var chart = new google.visualization.BarChart(document.getElementById('bar_chart'));
       chart.draw(data, options);
     }
 
-console.log(plot_data)
 
-console.log(typeof plot_data)
+var data = [{
+    values: modelValues,
+    labels: modelLabels,
+    type: 'pie'
+  }];
+  
+  var layout = {
+    height: 400,
+    width: 500
+  };
+  
+
+function plotlyInit() {
+    var data = [{
+      values: modelValues,
+      labels: modelLabels,
+      type: 'pie' 
+    }];
+
+    var layout = {
+        height: 600,
+        width: 750
+      };    
+      
+    Plotly.newPlot('pie_chart', data, layout);
+  }
+  
+function updatePlotly(newV, newL) {
+  
+    Plotly.restyle('pie_chart', "values", [newV]);
+    Plotly.restyle('pie_chart', "labels", [newL]);
+  }
+  
+function getData(dataset) {
+
+    var values = [];
+    var labels = [];
+  
+    switch (dataset) {
+    case "modelset":
+      values = modelValues;
+      labels = modelLabels;
+      break;
+    case "makeset":
+      values = makeValues;
+      labels = makeLabels;
+      break;      
+    case "bodyset":
+      values = bodyValues;
+      labels = bodyLabels;
+      break;
+    default:
+      values = modelValues;
+      labels = modelLabels;
+      break;
+    }
+  
+    updatePlotly(values, labels);
+  }
+  
+  plotlyInit();

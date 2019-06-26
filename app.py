@@ -6,12 +6,10 @@ import numpy as np
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, func
 
 from flask import Flask, jsonify, render_template, json
 from flask_sqlalchemy import SQLAlchemy
-
-import itertools
 
 app = Flask(__name__)
 
@@ -64,7 +62,7 @@ def data():
 
 @app.route("/plots")
 def plots():
-    plot_results = db.session.query(Cars.Make, Cars.Model, Cars.Manufacturer_Suggested_Retail_Price, Cars.Used_Car_Value).all()
+    plot_results = db.session.query(Cars.Make, Cars.Model, Cars.Manufacturer_Suggested_Retail_Price, Cars.Used_Car_Value).distinct()
 
     car_info = []
     plot_info = [['Car', 'MSRP', 'Used Car Value']]
@@ -77,10 +75,38 @@ def plots():
         car_info = []
 
     plot_info.sort()
-    plot_info = list(plot_info for plot_info,_ in itertools.groupby(plot_info))    
+
+
+    model_group = db.session.query(Cars.Model, func.count(Cars.State)).group_by(Cars.Model)
+
+    model = []
+    model_count = []
+
+    for mod in model_group:
+        model.append(mod[0])
+        model_count.append(mod[1])
+
+    make_group = db.session.query(Cars.Make, func.count(Cars.State)).group_by(Cars.Make)
+
+    make = []
+    make_count = []
+
+    for mak in make_group:
+        make.append(mak[0])
+        make_count.append(mak[1])
+
+    body_group = db.session.query(Cars.Body_Style, func.count(Cars.State)).group_by(Cars.Body_Style)
+
+    body = []
+    body_count = []
+
+    for bod in body_group:
+        body.append(bod[0])
+        body_count.append(bod[1])    
 
     """Return plot data."""
-    return render_template('plots.html', prices=json.dumps(plot_info))
+    return render_template('plots.html', prices=json.dumps(plot_info), model=json.dumps(model), model_count=json.dumps(model_count), \
+        make=json.dumps(make), make_count=json.dumps(make_count), body=json.dumps(body), body_count=json.dumps(body_count))
 
 
 if __name__ == "__main__":

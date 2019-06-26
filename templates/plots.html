@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <title>Plots</title>
 
-    <script> var plot_data = {{ prices|safe }}; </script>
+    <script> 
+    var plotData = {{ prices|safe }}; 
+    var modelValues = {{ model_count|safe }}; 
+    var modelLabels = {{ model|safe }}; 
+    var makeValues = {{ make_count|safe }}; 
+    var makeLabels = {{ make|safe }}; 
+    var bodyValues = {{ body_count|safe }}; 
+    var bodyLabels = {{ body|safe }}; 
+    </script>
 
-    <!-- d3 JavaScript -->
+    <!-- Google Chart JS -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!-- Plotly JS -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
     <!-- Our CSS -->
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
@@ -15,8 +26,17 @@
   </head>
   <body>
 
-    <!-- chart div -->
-    <div id="chart_div"></div>
+    <!-- bar chart div -->
+    <div id="bar_chart"></div>
+    <hr>
+    <select id="selDataset" onchange="getData(this.value)">
+            <option value="modelset">Model Percentage</option>
+            <option value="makeset">Make Percentage</option>
+            <option value="bodyset">Body Style Percentage</option>
+          </select>
+
+    <!-- bar chart div -->
+    <div id="pie_chart"></div>
 
     <!-- JS  -->
     <script type="text/javascript" src="{{ url_for('static', filename='js/plots.js') }}"></script>    
