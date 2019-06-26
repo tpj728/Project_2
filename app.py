@@ -8,8 +8,10 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, json
 from flask_sqlalchemy import SQLAlchemy
+
+import itertools
 
 app = Flask(__name__)
 
@@ -60,6 +62,28 @@ def data():
 
     """Return table data."""
     return render_template('data.html', items=results)
+
+@app.route("/plots")
+def plots():
+    plot_results = db.session.query(Cars.Make, Cars.Model, Cars.Manufacturer_Suggested_Retail_Price, Cars.Used_Car_Value).all()
+
+    car_info = []
+    plot_info = [['Car', 'MSRP', 'Used Car Value']]
+
+    for result in plot_results:
+        car_info.append(f'{result[0]} {result[1]}')
+        car_info.append(int(result[2].replace('$','').replace(',','')))
+        car_info.append(int(result[3].replace('$','').replace(',','')))
+        plot_info.append(car_info)
+        car_info = []
+
+    plot_info.sort()
+    plot_info = list(plot_info for plot_info,_ in itertools.groupby(plot_info))    
+
+    print(plot_info)
+
+    return render_template('plots.html', prices=json.dumps(plot_info))
+
 
 if __name__ == "__main__":
     app.run()

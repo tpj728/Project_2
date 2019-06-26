@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Plots</title>
+
+    <script> var plot_data = {{ prices|safe }}; </script>
+
+    <!-- d3 JavaScript -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+  </head>
+  <body>
+
+    <!-- chart div -->
+    <div id="chart_div"></div>
+
+    <!-- JS  -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plots.js') }}"></script>    
+
+  </body>
+</html>
