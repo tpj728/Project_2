@@ -55,7 +55,6 @@ def map():
 @app.route("/data")
 def data():
 
-    # Use Pandas to perform the sql query
     results = db.session.query(Cars.State, Cars.Model, Cars.Make, Cars.Manufacturer_Suggested_Retail_Price, Cars.Used_Car_Value, \
         Cars.Engine_Name, Cars.Transmission_Name, Cars.Trim, Cars.Class, Cars.Horsepower, Cars.Standard_MPG, Cars.Body_Style, \
             Cars.Drivetrain, Cars.Fuel_Type, Cars.Seating_Capacity).all()
@@ -80,8 +79,7 @@ def plots():
     plot_info.sort()
     plot_info = list(plot_info for plot_info,_ in itertools.groupby(plot_info))    
 
-    print(plot_info)
-
+    """Return plot data."""
     return render_template('plots.html', prices=json.dumps(plot_info))
 
 
