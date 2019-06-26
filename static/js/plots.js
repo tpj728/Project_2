@@ -8,7 +8,7 @@ function drawBarColors() {
       var options = {
         title: 'Car Value Depreciation (2016 vs 2019)',
         chartArea: {width: '50%'},
-        colors: ['#20308C', '#8C2020'],
+        colors: ['#262CB0', '#B02626'],
         hAxis: {
           title: 'Price ($)',
           minValue: 0
