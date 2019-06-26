@@ -21,3 +21,16 @@ html {
 #marker-panel {
   font-size: 14px
 }
+
+.svg-container {
+  margin: auto !important;
+}
+
+.gtitle {
+  font-family: Arial !important;
+  font-size: 17 !important;
+  font-weight: bold !important;
+  stroke: none !important;
+  stroke-width: 0 !important;
+  fill: rgb(0, 0, 0) !important;
+}

@@ -1,3 +1,4 @@
+//Google Charts
 google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(drawBarColors);
 
@@ -7,7 +8,7 @@ function drawBarColors() {
       var options = {
         title: 'Car Value Depreciation (2016 vs 2019)',
         chartArea: {width: '50%'},
-        colors: ['#000000', '#c8c8c8'],
+        colors: ['#20308C', '#8C2020'],
         hAxis: {
           title: 'Price ($)',
           minValue: 0
@@ -22,37 +23,28 @@ function drawBarColors() {
     }
 
 
-var data = [{
-    values: modelValues,
-    labels: modelLabels,
-    type: 'pie'
-  }];
-  
-  var layout = {
-    height: 400,
-    width: 500
-  };
-  
-
+// Plotly
 function plotlyInit() {
     var data = [{
       values: modelValues,
       labels: modelLabels,
+      hole: .4,
       type: 'pie' 
     }];
 
     var layout = {
+        title: 'Car Popularity by Model, Make, and Body Style',
         height: 600,
         width: 750
       };    
       
-    Plotly.newPlot('pie_chart', data, layout);
+    Plotly.newPlot('donut_chart', data, layout);
   }
   
 function updatePlotly(newV, newL) {
   
-    Plotly.restyle('pie_chart', "values", [newV]);
-    Plotly.restyle('pie_chart', "labels", [newL]);
+    Plotly.restyle('donut_chart', "values", [newV]);
+    Plotly.restyle('donut_chart', "labels", [newL]);
   }
   
 function getData(dataset) {
