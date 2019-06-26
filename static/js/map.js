@@ -60,7 +60,8 @@ d3.json(link, function(data) {
         },
         // When a feature (state) is clicked, it is enlarged to fit the screen
         click: function(event) {
-          map.fitBounds(event.target.getBounds());
+          // map.fitBounds(event.target.getBounds());
+          map.setView(event.latlng, 5.5);
         }
       });
       // Giving each feature a pop-up with information pertinent to it
