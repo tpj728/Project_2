@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Data</title>
+
+        <!-- Bootstrap CSS -->  
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!--Style CSS-->    
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    </head>
+    
+    <style>
+            h2 {
+            text-align:center;
+            color: grey;
+            padding-block-start: 1cm;
+            padding-block-end: 1cm;
+            background-color: black;
+            border: 2px grey;
+                border-radius: 5px;
+            }
+            h3 {
+            background-color: black;
+            color: grey;
+            text-align:center;
+            padding-block-start: 1cm;
+            padding-block-end: 1cm;
+            border: 2px grey;
+                border-radius: 5px;
+            }
+        </style>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-* bd-navbar flex-column flex-md sticky-top" style="background-color: #000000;">
+            <div class="container-fluid">
+            <a class="navbar-brand " href="/"><strong>DHT-Cars.com</strong>
+                <title>Drew Hamza Tim, Inc.</title>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <div class="navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" href="/"><strong>Home</strong></a>
+                <a class="nav-item nav-link active" href="/map"><strong>Map</strong><span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="/data"><strong>Car Specs</strong></a>
+                <a class="nav-item nav-link" href="/plots"><strong>Plots</strong></a>
+                <a class="nav-item nav-link" href="/"><strong>JSON Data</strong></a>
+                </ul>
+                </div>
+            </a>
+            </div>
+        </nav>
+        <br>
+    <body>
+        <h3>2016 Motor Trend Vehicle Data</h3>
+<hr>
+<p>The following table includes all of the data that was scraped and used for plotting during this project.</p>
+<br>
+    <table class="table table-dark table-hover table-bordered table-striped mb-0">
+        <thead class="thead-dark">
+            <tr>
+                <th>State</th>
+                <th>Model</th>
+                <th>Make</th>
+                <th>MSRP</th>
+                <th>Used Price</th>
+                <th>Engine</th>
+                <th>Transmission</th>
+                <th>Trim</th>
+                <th>Class</th>
+                <th>Horsepower</th>
+                <th>MPG</th>
+                <th>Body Style</th>
+                <th>Drivetrain</th>
+                <th>Fuel Type</th>
+                <th>Seating Capacity</th>
+            </tr>
+        </thead>
+        {% for item in items %}
+            <tr>
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}}</td>
+                <td>{{item[2]}}</td>
+                <td>{{item[3]}}</td>
+                <td>{{item[4]}}</td>
+                <td>{{item[5]}}</td>
+                <td>{{item[6]}}</td>
+                <td>{{item[7]}}</td>
+                <td>{{item[8]}}</td>
+                <td>{{item[9]}}</td>
+                <td>{{item[10]}}</td>
+                <td>{{item[11]}}</td>
+                <td>{{item[12]}}</td>
+                <td>{{item[13]}}</td>
+                <td>{{item[14]}}</td>
+            </tr>
+            {% endfor %}
+     </table>
+    </body>
+    </html>

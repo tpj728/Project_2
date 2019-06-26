@@ -45,10 +45,26 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
+# @app.route("/Map")
+# def map_png():
+#     """Return the map.png."""
+#     return render_template("index.html", map_name = "Map.png")
+
+# @app.route("/Data")
+# def data_png():
+#     """Return the data.png."""
+#     return render_template("index.html", data_name = "Data.png")
+
+# @app.route("/Plots")
+# def plots_png():
+#     """Return the plots.png."""
+#     return render_template("index.html", plots_name = "Plots.png")   
+
 @app.route("/map")
 def map():
     """Return the map page."""
     return render_template("map.html")    
+
 
 @app.route("/data")
 def data():
