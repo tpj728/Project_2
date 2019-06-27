@@ -1,0 +1,31 @@
+**include heroku config in app.py, include requirements.txt, 
+
+heroku login
+
+conda create -n pet_pals_env python=3.6
+
+source activate pet_pals_env
+
+--pip install from requirements.txt
+
+pip install gunicorn
+pip install psycopg2
+pip install flask
+pip install flask-sqlalchemy
+pip install pandas
+
+python initdb.py
+
+FLASK_APP=pet_pals/app.py flask run
+
+pip freeze > requirements.txt
+
+**Create Heroku App
+
+git init
+
+heroku git:remote -a usa-pets-hmzskr
+
+git add .
+git commit -am 'comment'
+git push heroku master
