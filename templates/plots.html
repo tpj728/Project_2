@@ -1,73 +1,61 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>Plots</title>
-
-    <script> 
-    var plotData = {{ prices|safe }}; 
-    var modelValues = {{ model_count|safe }}; 
-    var modelLabels = {{ model|safe }}; 
-    var makeValues = {{ make_count|safe }}; 
-    var makeLabels = {{ make|safe }}; 
-    var bodyValues = {{ body_count|safe }}; 
-    var bodyLabels = {{ body|safe }}; 
-    </script>
-
-    <!-- Google Chart JS -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-    <!-- Plotly JS -->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
-    <!-- Our CSS -->
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-
-    <!-- Bootstrap CSS -->  
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
-  </head>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-* bd-navbar flex-column flex-md sticky-top" style="background-color: #000000;">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Plots</title>
+      <script> 
+         var plotData = {{ prices|safe }}; 
+         var modelValues = {{ model_count|safe }}; 
+         var modelLabels = {{ model|safe }}; 
+         var makeValues = {{ make_count|safe }}; 
+         var makeLabels = {{ make|safe }}; 
+         var bodyValues = {{ body_count|safe }}; 
+         var bodyLabels = {{ body|safe }}; 
+      </script>
+      <!-- Google Chart JS -->
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <!-- Plotly JS -->
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      <!-- Our CSS -->
+      <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+      <!-- Bootstrap CSS -->  
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   </head>
+   <nav class="navbar navbar-expand-sm navbar-dark bg-* bd-navbar flex-column flex-md sticky-top" style="background-color: #000000;">
       <div class="container-fluid">
-      <a class="navbar-brand " href="/"><strong>DHT-Cars.com</strong>
-          <title>Drew Hamza Tim, Inc.</title>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-      
-          <div class="navbar-collapse">
-          <ul class="navbar-nav ml-auto">
-          <a class="nav-item nav-link" href="/"><strong>Home</strong></a>
-          <a class="nav-item nav-link" href="/map"><strong>Map</strong><span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="/data"><strong>Car Specs</strong></a>
-          <a class="nav-item nav-link active" href="/plots"><strong>Plots</strong></a>
-          </ul>
-          </div>
-      </a>
+         <a class="navbar-brand " href="/">
+            <strong>DHT-Cars.com</strong>
+            <title>Drew Hamza Tim, Inc.</title>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse">
+               <ul class="navbar-nav ml-auto">
+         <a class="nav-item nav-link" href="/"><strong>Home</strong></a>
+         <a class="nav-item nav-link" href="/map"><strong>Map</strong><span class="sr-only">(current)</span></a>
+         <a class="nav-item nav-link" href="/data"><strong>Car Specs</strong></a>
+         <a class="nav-item nav-link active" href="/plots"><strong>Plots</strong></a>
+         </ul>
+         </div>
+         </a>
       </div>
-  </nav>
-  <br>
-  <body>
+   </nav>
+   <br>
+   <body>
       <h3>Data Visualizations</h3>
-
-    <!-- bar chart div -->
-    <div id="bar_chart"></div>
-    <hr>
-    <select id="selDataset" onchange="getData(this.value)">
-            <option value="modelset">Model Percentage</option>
-            <option value="makeset">Make Percentage</option>
-            <option value="bodyset">Body Style Percentage</option>
-          </select>
-
-    <!-- bar chart div -->
-    <div id="donut_chart"></div>
-
-    <!-- JS  -->
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plots.js') }}"></script>    
-
-  </body>
+      <!-- bar chart div -->
+      <div id="bar_chart"></div>
+      <hr>
+      <select id="selDataset" onchange="getData(this.value)">
+         <option value="modelset">Model Percentage</option>
+         <option value="makeset">Make Percentage</option>
+         <option value="bodyset">Body Style Percentage</option>
+      </select>
+      <!-- bar chart div -->
+      <div id="donut_chart"></div>
+      <!-- JS  -->
+      <script type="text/javascript" src="{{ url_for('static', filename='js/plots.js') }}"></script>    
+   </body>
 </html>

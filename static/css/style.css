@@ -2,30 +2,22 @@ body {
   padding: 0;
   margin: 0;
 }
-
-#map,
-body,
-html {
+#map, body, html {
   height: 100%;
 }
-
 #car-image{
-	max-width:100%; 
-	max-width:100%;
+  max-width:100%;
+  max-width:100%;
 }
-
 #marker-panel {
-  width: 300px
+  width: 300px 
 }
-
 #marker-panel {
-  font-size: 14px
+  font-size: 14px 
 }
-
 .svg-container {
   margin: auto !important;
 }
-
 .gtitle {
   font-family: Arial !important;
   font-size: 17 !important;
@@ -34,7 +26,6 @@ html {
   stroke-width: 0 !important;
   fill: rgb(0, 0, 0) !important;
 }
-
 h2 {
   text-align:center;
   color: grey;
@@ -42,7 +33,7 @@ h2 {
   padding-block-end: 1cm;
   background-color: black;
   border: 2px grey;
-    border-radius: 5px;
+  border-radius: 5px;
 }
 h3 {
   background-color: black;
@@ -51,26 +42,25 @@ h3 {
   padding-block-start: 1cm;
   padding-block-end: 1cm;
   border: 2px grey;
-    border-radius: 5px;
+  border-radius: 5px;
 }
 .image-panel {
-  text-align: center; 
-  width: 100%; 
-  height: 100%; 
+  text-align: center;
+  width: 100%;
+  height: 100%;
 }
 .active, .image-panel:hover{
   border-color: #343A40 !important;
   border-style: solid !important;
-  
 }
 iframe {
-      width: 100%;
-      height: 100%;
-      display: block;
-      padding: 10px;
-      margin:auto;
-  }
-  .row {
-    margin-right: 0px !important;
-    margin-left: 0px !important;
-  }
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 10px;
+  margin:auto;
+}
+.row {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
