@@ -1,21 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
 <head>
-	<title>Most Popular Cars by State</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<!-- Bootstrap CDN -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  
+	<link rel="stylesheet"href="static/css/style.css">
+
+	<title>Most Popular Cars by State (2016)</title>
+
 </head>
+<!-- Image and text -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-* bd-navbar flex-column flex-md sticky-top" style="background-color: #000000;">
+	<div class="container-fluid">
+		<a class="navbar-brand " href="/"><strong>DHT-Cars.com</strong>
+			<title>Drew Hamza Tim, Inc.</title>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+			 <span class="navbar-toggler-icon"></span>
+		  </button>
+	  
+		  <div class="navbar-collapse">
+			<ul class="navbar-nav ml-auto">
+			  <a class="nav-item nav-link active" href="/"><strong>Home</strong><span class="sr-only">(current)</span></a>
+			  <a class="nav-item nav-link" href="/map"><strong>Map</strong></a>
+			  <a class="nav-item nav-link" href="/data"><strong>Car Specs</strong></a>
+			  <a class="nav-item nav-link" href="/plots"><strong>Plots</strong></a>
+			</ul>
+		  </div>
+		</a>
+	</div>
+</nav>
+<br>
 <body>
-	<a href="/map">Map</a>
-	<br>
-	<a href="/data">Data</a>
-	<br>
-	<a href="/plots">Plots</a>
-	<br><br><br>
-	<a href="http://eric.clst.org/assets/wiki/uploads/Stuff/gz_2010_us_outline_500k.json" target="_blank">GeoJSON source file</a>
-	<br>
-	<a href="https://github.com/tpj728/Project_2/blob/master/state_car_info.json" target="_blank">Modified JSON used in this project</a>
-	<br>
-	<a href="http://eric.clst.org/tech/usgeojson/" target="_blank">Other JSON files</a>
-	<br><br><br>
-	<iframe src="https://www.usatoday.com/story/news/nation-now/2017/08/30/these-most-popular-cars-and-trucks-every-state/478537001/" width=1000 height=1000></iframe>
+		<div class="container">
+				<div class="row justify-content-md-center">
+				  <div class="col-lg-12 col-md-12 text-center">
+						<h2>Most Popular Vehicles By State - 2016
+						</h2>
+						<hr class="hidden-sm hidden-md hidden-lg">
+					</div>
+				</div>
+		</div>
+		
+		<div class="row">	
+			<div class="col-lg-11 col-md-11"> 
+				<h2><strong>USA Today for Web Scraping</strong></h2>
+				<br>
+				<br>
+				<iframe src="https://www.usatoday.com/story/news/nation-now/2017/08/30/these-most-popular-cars-and-trucks-every-state/478537001/" frameborder="0" allowfullscreen></iframe> 
+<br>
+<br>
+<h4>Sources</h4>
+<p><a href="https://github.com/tpj728/Project_2/blob/master/2016_Cars_by_State_Final.ipynb">Jupyter Notebook used for this project.</a><br>
+	<a href="https://raw.githubusercontent.com/tpj728/Project_2/master/state_car_info.json">JSON file generated.</a><br>
+	<a href="http://eric.clst.org/assets/wiki/uploads/Stuff/gz_2010_us_outline_500k.json">Original JSON file.</a><br>
+	<a href="http://eric.clst.org/tech/usgeojson/">Other useful JSON files.</a><br>
+	Car specifications and images were scraped from <a href="https://www.usatoday.com">USA TODAY</a>, 
+	<a href="https://www.motortrend.com">MotorTrend</a>, and <a href="https://www.kbb.com">Kelly Blue Book</a>.
+</p>
+<br>			
+			</div>
+
+				
+			<div class="col-lg-1 col-md-1">
+				<br>
+				<br>    
+				<div id="list" class="list-group my-auto">
+					<a href="/map">
+						<!-- <h5 style="text-align: center; font-weight: bold;">Map</h5> -->
+					<img class="image-panel" src="{{url_for('static', filename='Map.png')}}" alt="Map">
+					</a>
+					<br>
+					<a href="/data">
+						<!-- <h5 style="text-align: center; font-weight: bold;">Car Specs</h5> -->
+					<img class="image-panel" src="{{url_for('static', filename='Data.png')}}" alt="Car Specs">
+					</a>
+					<br>
+					<a href="/plots">
+						<!-- <h5 style="text-align: center; font-weight: bold;">Plots</h5> -->
+					<img class="image-panel" src="{{url_for('static', filename='Plots.png')}}" alt="Plots">
+					</a>
+					<br>
+				</div>
+			</div>
+		</div>
 </body>
 </html>

@@ -16,7 +16,7 @@ function drawBarColors() {
         vAxis: {
           title: 'Car'
         },
-        height: 420
+        height: 700
       };
       var chart = new google.visualization.BarChart(document.getElementById('bar_chart'));
       chart.draw(data, options);
@@ -34,8 +34,8 @@ function plotlyInit() {
 
     var layout = {
         title: 'Car Popularity by Model, Make, and Body Style',
-        height: 450,
-        width: 665
+        height: 800,
+        width: 800
       };    
       
     Plotly.newPlot('donut_chart', data, layout);
