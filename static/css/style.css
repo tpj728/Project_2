@@ -67,7 +67,8 @@ iframe {
 
 .legend {
   line-height: 18px;
-  color: #555;
+  color: #aaaaaa;
+  font-weight: bold;
 }
 .legend i {
   width: 18px;
